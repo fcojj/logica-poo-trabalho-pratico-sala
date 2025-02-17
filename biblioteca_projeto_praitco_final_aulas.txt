@@ -1,0 +1,82 @@
+### Sistema de Gerenciamento de Biblioteca ### 
+Descrição do Projeto
+O objetivo deste projeto é criar um sistema simples de gerenciamento de biblioteca que permita aos usuários gerenciar uma coleção de livros(Fisicos e Digitais) e revistas. 
+O sistema deve suportar o empréstimo e devolução de itens, bem como catalogação(listar, buscar, adicionar e remover itens do acervo)
+
+#### Requisitos #### 
+1- Crie classes para representar LivroFisico e LivroDigital e Revista.
+
+2- Livro Fisico e Livro Digital e Revista tem os seguintes atributos
+#LivroFisico
+- titulo
+- autor
+- categoria
+- dataPublicacao
+- isbn
+- quantidadeExemplares
+- quantidadeExemplaresEmprestados
+
+#LivroDigital
+- titulo
+- autor
+- categoria
+- dataPublicacao
+- isbn
+- tamanhoArquivoMB
+- formatoArquivo
+
+#Revista
+- titulo
+- issn
+- dataPublicacao
+- emprestado -> sera um boolean que determina se uma revista esta emprestada ou nao, por padrao tem valor false
+
+
+3-Use Herança e Composição onde for possível nas classes criadas no passo anterior.
+Dicas:
+Criar uma classe Livro para utilizar como classe pai de LivroDigital e LivroFisico, aplicando assim o conceito de herança.
+Crie tambem Classes ou Records para representar os atributos Autor e Categoria e aplique o conceito de composição
+
+4- Crie uma interface Emprestavel e implemente essa interface nos itens da biblioteca que podem ser emprestados e devolvidos.
+Apenas Livro Fisico e Revista podem ser emprestados e deolvidos.
+Dica: esses são possiveis asinaturas de metodos da interface Emprestavel
+- void emprestar();
+- void devolver();
+
+5- Crie uma interface ItemAcervo com os metodos para serem implementados abaixo. Essa interface deve ser implementada pelos Livros e Revistas.
+ItemAcervo buscar(String titulo);
+void exibirDetalhes(); -> exibi detalhes de um item do acervo
+
+6-Crie uma lista para armazenar todos os itens do acervo. Essa lista deve ser estatica e todas as operacoes definidas no passo anterior
+devem ser feitas utilizando a lista. Adicionar, remover, listar itens do acervo.
+
+7-Cria uma classe Biblioteca e crie metodos abaixo:
+
+#exibitrMenu()
+- Esse metodo servira como metodo principal da biblioteca. Ele irá exibir um menu inicial com todas as opcoes descritas abaixo:
+1 - Adicionar item ao acervo
+2 - Remover item do acervo
+3 - Listar acervo
+4 - Buscar item por título
+5 - Emprestar um item do acervo
+6 - Devolver um item do acervo
+7 - Sair do sistema
+
+- O menu deve ser exibido novamente sempre que uma operacao escolhida pelo usuario seja concluida. No caso da opcao escolhida seja a 7 o programa terminara.
+- Caso o usuario digite alguma entrada inesperada nao deixe o fluxo do seu programa ser interrompido exiba o error para o usuario e re-exiba o menu.
+- cada operação definida no menu devera chamar o metodo adequado definido nas interfaces Emprestavel e ItemAcervo. Dica: cuidado que nem todos os itens dentro da lista
+que armazena o acervo da biblioteca podem sem emprestados ou devolvidos. Utilize "instance of" caso necessario.
+- para o metodo adicionar item ao acervo pode escolher adicionar somente Revista ou LivroDigital. Ou be brave e implemente o adicionar para todos os itens da biblioteca.
+- tente criar um unico objeto Scanner para todos o sistema e so o feche quando o usuario escolher a opcao 7.
+
+
+8-Crie uma classe BibliotecaUtil essa classe nao podera ser instanciada e nem herdada. Nela contera um metodo estatico que quando invocado retornara
+uma lista de List<ItemAcervo>. Os itens dessa lista contera objetos LivroFisico, LivroDIgital e Revistas que serao adicionados a lista criada no passo 6.
+Isso deve acontecer logo que criarmos uma instancia da classe Biblioteca.
+
+
+9-Utilize o conceito de classes seladas para que somente LivroDigital e LivroFisico possam herdar da classe Livro.
+
+10-Utilize o Bloco de texto e String templates para exibir o menu principal e os detalhes dos itens do acervo
+
+11-Tente utilizar switch enhanced/switch expression no menu principal e Matching Patterning nos métodos emprestar e devolver
